@@ -1,0 +1,101 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Grooming Scheduler — Groomer selection + services flow (React Query)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Build a scheduler-style UI flow to select a groomer and then view services for the selected groomer, with clear selection state and ability to change groomer.",
+      "acceptanceCriteria": [
+        "A dedicated page/screen exists that presents a list of groomers with clear selection affordances.",
+        "When a groomer is selected, the UI transitions (same page or next step) to display services for that groomer only.",
+        "The page includes a clear indicator of the currently selected groomer and an easy way to change the selection (e.g., back button or change groomer control).",
+        "User-facing text is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the app shell and wire in routing/navigation to the scheduler flow page (ensure the groomer selection/services step UI is reachable). Use shadcn-ui layout primitives (e.g., Card/Button) where appropriate; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/GroomerSchedulerPage.tsx",
+          "operation": "create",
+          "description": "Implement the scheduler-style two-step UI: (1) groomer selection list with clear affordances; (2) services list filtered to the selected groomer, including a visible selected-groomer indicator and a 'change groomer' control to return to selection. Use shadcn-ui components for polished UI (e.g., Card, Button, Badge, Separator); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/scheduler/GroomerSelectList.tsx",
+          "operation": "create",
+          "description": "Create a focused UI component that renders the groomer list with selection affordances and highlights the current selection. Use shadcn-ui components for list item styling and selection states; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/scheduler/ServiceList.tsx",
+          "operation": "create",
+          "description": "Create a focused UI component that renders the selected groomer’s services (title/description/price range) and supports empty states. Use shadcn-ui components (e.g., Card, Badge) for consistent styling; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Fetch groomers and services from the backend using React Query with loading, error, and retry states.",
+      "acceptanceCriteria": [
+        "Groomer list loads from the backend and shows a loading state while fetching.",
+        "Selecting a groomer triggers fetching of that groomer’s services from the backend and shows a loading state while fetching.",
+        "Errors fetching groomers or services are displayed in the UI with an option to retry."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useGroomers.ts",
+          "operation": "create",
+          "description": "Add a React Query hook that uses the existing useActor hook to fetch the groomer list from the backend and exposes loading/error/refetch state."
+        },
+        {
+          "path": "frontend/src/hooks/useGroomerServices.ts",
+          "operation": "create",
+          "description": "Add a React Query hook that fetches services for a provided groomer id (enabled only when a groomer is selected) and exposes loading/error/refetch state."
+        },
+        {
+          "path": "frontend/src/pages/GroomerSchedulerPage.tsx",
+          "operation": "modify",
+          "description": "Connect UI to the React Query hooks: show loading skeletons/spinners while fetching, show an error alert with retry on failures, and trigger services fetching on groomer selection. Use shadcn-ui feedback components (e.g., Alert, Skeleton) for loading/error states; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/scheduler/GroomerSelectList.tsx",
+          "operation": "modify",
+          "description": "Add props to support loading and error UI presentation from React Query state, and a retry action surface when grooming list fetch fails. Use shadcn-ui components for consistent error display; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/scheduler/ServiceList.tsx",
+          "operation": "modify",
+          "description": "Add props to support loading and error UI presentation from React Query state, and a retry action surface when services fetch fails. Use shadcn-ui components for consistent error display; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Apply a modern, pet-care-adjacent theme with consistent typography/spacing and a non-blue/non-purple primary brand color; ensure responsive layout.",
+      "acceptanceCriteria": [
+        "The groomer selection and services list screens share consistent typography, spacing, and component styling.",
+        "Primary/brand color is not blue or purple.",
+        "Layout is responsive and usable on mobile and desktop widths."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Define global theme tokens (CSS variables consumed by Tailwind/shadcn-ui) using a modern pet-care palette with a primary color that is not blue or purple (e.g., warm green/amber). Ensure consistent typography and base background/foreground variables across the app. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme configuration only as needed to support the chosen palette/typography/spacing system while keeping consistency with existing CSS-variable-based colors (ensure primary is not blue/purple)."
+        },
+        {
+          "path": "frontend/src/pages/GroomerSchedulerPage.tsx",
+          "operation": "modify",
+          "description": "Apply consistent spacing, typography hierarchy, and responsive layout (mobile-first, scales to desktop) across both steps of the scheduler flow. Use shadcn-ui components and Tailwind utility classes for a cohesive look; verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

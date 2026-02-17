@@ -1,0 +1,10 @@
+{
+  "frontend/src/App.tsx": "Main application component that renders the GroomerSchedulerPage and includes the Toaster for notifications.",
+  "frontend/src/pages/GroomerSchedulerPage.tsx": "Main scheduler page component managing the two-step flow (groomer selection and service list) with header, footer, and state management for selected groomer.",
+  "frontend/src/components/scheduler/GroomerSelectList.tsx": "Component that displays a grid of groomer cards with loading skeletons, error handling, and selection functionality.",
+  "frontend/src/components/scheduler/ServiceList.tsx": "Component that displays a list of services for the selected groomer with pricing, descriptions, loading states, and error handling.",
+  "frontend/src/hooks/useGroomers.ts": "React Query hook that fetches all groomers from the backend using the actor.",
+  "frontend/src/hooks/useGroomerServices.ts": "React Query hook that fetches services for a specific groomer ID from the backend using the actor.",
+  "frontend/src/index.css": "Global styles with OKLCH color system using a warm teal/cyan primary color (hue 145) for a pet-friendly aesthetic in both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration with extended color tokens, border radius, and animation settings matching the design system."
+}

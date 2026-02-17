@@ -1,0 +1,98 @@
+{
+  "kind": "build_request",
+  "title": "Groomer selection page with services list (Chewy scheduler-inspired)",
+  "projectName": "Grooming Scheduler",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a scheduler-style UI flow (inspired by https://www.chewy.com/vet-care/scheduler) where the user can select a groomer and then view a list of services offered by that selected groomer.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-3"
+        ],
+        "quotes": [
+          "https://www.chewy.com/vet-care/scheduler , use this as context , i'm looking for a page that list services from groomers once i select them"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A dedicated page/screen exists that presents a list of groomers with clear selection affordances.",
+        "When a groomer is selected, the UI transitions (same page or next step) to display services for that groomer only.",
+        "The page includes a clear indicator of the currently selected groomer and an easy way to change the selection (e.g., back button or change groomer control).",
+        "User-facing text is in English."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement backend data and APIs to provide (1) the list of groomers and (2) the list of services for a given groomer, so the frontend can render real data rather than hardcoded UI-only state.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-3"
+        ],
+        "quotes": [
+          "i'm looking for a page that list services from groomers once i select them"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes a query method to list groomers.",
+        "Backend exposes a query method to list services for a specific groomer identifier.",
+        "Returned data includes stable identifiers and display names for groomers and services.",
+        "The backend can be initialized with seed/sample groomers and services so the UI is usable immediately after deployment."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Connect the groomer/services UI to the backend using React Query, including loading and error states for fetching groomers and services.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-3"
+        ],
+        "quotes": [
+          "i'm looking for a page that list services from groomers once i select them"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Groomer list loads from the backend and shows a loading state while fetching.",
+        "Selecting a groomer triggers fetching of that groomer’s services from the backend and shows a loading state while fetching.",
+        "Errors fetching groomers or services are displayed in the UI with an option to retry."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Apply a coherent, polished visual theme for the scheduler flow (colors, typography, spacing, and components) that feels modern and pet-care adjacent, and keep it consistent across the groomer selection and services list steps (do not use blue/purple as primary colors).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "use this as context"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The groomer selection and services list screens share consistent typography, spacing, and component styling.",
+        "Primary/brand color is not blue or purple.",
+        "Layout is responsive and usable on mobile and desktop widths."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (all logic in backend/main.mo).",
+    "Do not edit files under frontend immutable paths (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui); compose them instead."
+  ],
+  "nonGoals": [
+    "Implementing appointment time-slot selection, calendar availability, or booking/checkout flows.",
+    "Implementing payments, notifications, or third-party authentication beyond Internet Identity.",
+    "Building an admin UI to manage groomers/services (seed/sample data is sufficient for this build)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

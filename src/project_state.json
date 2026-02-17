@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a scheduler-style page (inspired by Chewy Vet Care scheduler) where, after selecting a groomer, the user sees a list of that groomer’s available services.",
+  "architectural_notes": [
+    "Use https://www.chewy.com/vet-care/scheduler as a UX/context reference for the scheduler flow."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-scheduler-style-ui-flow-inspired-by-https-www-chewy-com-vet-care-scheduler-where-the-user-can-select-a-groomer-and-then-view-a-list-of-services-offered-by-that-selected-groomer",
+      "title": "Create a scheduler-style UI flow (inspired by https://www.chewy.com/vet-care/scheduler) where the user can select a groomer and then view a list of services offered by that selected groomer.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-connect-the-groomer-services-ui-to-the-backend-using-react-query-including-loading-and-error-states-for-fetching-groomers-and-services",
+      "title": "Connect the groomer/services UI to the backend using React Query, including loading and error states for fetching groomers and services.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-polished-visual-theme-for-the-scheduler-flow-colors-typography-spacing-and-components-that-feels-modern-and-pet-care-adjacent-and-keep-it-consistent-across-the-groomer-selection-and-services-list-steps-do-not-use-blue-purple-as-primary-colors",
+      "title": "Apply a coherent, polished visual theme for the scheduler flow (colors, typography, spacing, and components) that feels modern and pet-care adjacent, and keep it consistent across the groomer selection and services list steps (do not use blue/purple as primary colors).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a page that lists a selected groomer’s available services (using Chewy scheduler as UX reference).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement backend data and APIs to provide (1) the list of groomers and (2) the list of services for a given groomer, so the frontend can render real data rather than hardcoded UI-only state.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Grooming Scheduler",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
