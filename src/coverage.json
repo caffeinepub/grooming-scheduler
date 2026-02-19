@@ -1,173 +1,119 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-17T19:14:09.898Z",
+  "generatedAt": "2026-02-19T00:48:54.331Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 4,
-    "implemented": 3,
+    "total": 7,
+    "implemented": 6,
     "items": [
       {
-        "id": "REQ-1",
-        "summary": "Create a scheduler-style UI flow (inspired by https://www.chewy.com/vet-care/scheduler) where the user can select a groomer and then view a list of services offered by that selected groomer.",
+        "id": "REQ-19",
+        "summary": "Create a new frontend page/route for groomer onboarding at /groomer-onboard that allows groomers to sign up and register with the platform",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/pages/GroomerSchedulerPage.tsx",
-          "frontend/src/components/scheduler/GroomerSelectList.tsx",
-          "frontend/src/components/scheduler/ServiceList.tsx"
+          "frontend/src/pages/GroomerOnboardPage.tsx",
+          "frontend/src/App.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/pages/GroomerSchedulerPage.tsx",
-          "frontend/src/components/scheduler/GroomerSelectList.tsx",
-          "frontend/src/components/scheduler/ServiceList.tsx"
+          "frontend/src/pages/GroomerOnboardPage.tsx",
+          "frontend/src/App.tsx"
         ]
       },
       {
-        "id": "REQ-2",
-        "summary": "Implement backend data and APIs to provide (1) the list of groomers and (2) the list of services for a given groomer, so the frontend can render real data rather than hardcoded UI-only state.",
+        "id": "REQ-20",
+        "summary": "Design the groomer onboarding flow to collect groomer details including name, contact information, business information, and any other relevant registration fields",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/onboarding/GroomerRegistrationForm.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/onboarding/GroomerRegistrationForm.tsx"
+        ]
+      },
+      {
+        "id": "REQ-21",
+        "summary": "Add a service listing interface within the groomer onboarding flow that allows groomers to add, edit, and remove their service offerings with title, description, and price range",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/onboarding/ServiceManagementSection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/onboarding/ServiceManagementSection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-22",
+        "summary": "Apply the existing Chewy blue color scheme and typography from the scheduler page consistently across all groomer onboarding UI elements including buttons, form inputs, focus states, and interactive elements",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/GroomerOnboardPage.tsx",
+          "frontend/src/components/onboarding/GroomerRegistrationForm.tsx",
+          "frontend/src/components/onboarding/ServiceManagementSection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/GroomerOnboardPage.tsx",
+          "frontend/src/components/onboarding/GroomerRegistrationForm.tsx",
+          "frontend/src/components/onboarding/ServiceManagementSection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-23",
+        "summary": "Create backend methods in the main Motoko actor to handle groomer registration, including storing groomer profile data and their listed services",
         "status": "unknown",
         "plannedFiles": [],
         "matchedFiles": []
       },
       {
-        "id": "REQ-3",
-        "summary": "Connect the groomer/services UI to the backend using React Query, including loading and error states for fetching groomers and services.",
+        "id": "REQ-24",
+        "summary": "Connect the groomer onboarding frontend form to the backend registration methods using React Query, including loading states during submission and success/error feedback after submission",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/hooks/useGroomers.ts",
-          "frontend/src/hooks/useGroomerServices.ts",
-          "frontend/src/pages/GroomerSchedulerPage.tsx",
-          "frontend/src/components/scheduler/GroomerSelectList.tsx",
-          "frontend/src/components/scheduler/ServiceList.tsx"
+          "frontend/src/hooks/useRegisterGroomer.ts",
+          "frontend/src/pages/GroomerOnboardPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/hooks/useGroomers.ts",
-          "frontend/src/hooks/useGroomerServices.ts",
-          "frontend/src/pages/GroomerSchedulerPage.tsx",
-          "frontend/src/components/scheduler/GroomerSelectList.tsx",
-          "frontend/src/components/scheduler/ServiceList.tsx"
+          "frontend/src/hooks/useRegisterGroomer.ts",
+          "frontend/src/pages/GroomerOnboardPage.tsx"
         ]
       },
       {
-        "id": "REQ-4",
-        "summary": "Apply a coherent, polished visual theme for the scheduler flow (colors, typography, spacing, and components) that feels modern and pet-care adjacent, and keep it consistent across the groomer selection and services list steps (do not use blue/purple as primary colors).",
+        "id": "REQ-25",
+        "summary": "Add navigation from the scheduler page to the groomer onboarding page, and vice versa, so users can easily access both flows",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js",
-          "frontend/src/pages/GroomerSchedulerPage.tsx"
+          "frontend/src/pages/GroomerSchedulerPage.tsx",
+          "frontend/src/pages/GroomerOnboardPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js",
-          "frontend/src/pages/GroomerSchedulerPage.tsx"
+          "frontend/src/pages/GroomerSchedulerPage.tsx",
+          "frontend/src/pages/GroomerOnboardPage.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
     "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
-    "build-template/Dockerfile",
-    "build-template/LICENSE",
-    "build-template/README.md",
-    "build-template/deploy.sh",
-    "build-template/icp.yaml",
-    "build-template/package.json",
-    "build-template/pnpm-lock.yaml",
-    "build-template/pnpm-workspace.yaml",
-    "build-template/scripts/prune-unused-images.js",
-    "build-template/scripts/resize-images.js",
-    "build-template/src/backend/canister.yaml",
-    "build-template/src/backend/system-idl/aaaaa-aa.did",
-    "build-template/src/frontend/canister.yaml",
-    "build-template/src/frontend/components.json",
-    "build-template/src/frontend/env.json",
-    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
-    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
-    "build-template/src/frontend/eslint.config.js",
-    "build-template/src/frontend/package.json",
-    "build-template/src/frontend/postcss.config.js",
-    "build-template/src/frontend/src/components/ui/accordion.tsx",
-    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
-    "build-template/src/frontend/src/components/ui/alert.tsx",
-    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
-    "build-template/src/frontend/src/components/ui/avatar.tsx",
-    "build-template/src/frontend/src/components/ui/badge.tsx",
-    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
-    "build-template/src/frontend/src/components/ui/button.tsx",
-    "build-template/src/frontend/src/components/ui/calendar.tsx",
-    "build-template/src/frontend/src/components/ui/card.tsx",
-    "build-template/src/frontend/src/components/ui/carousel.tsx",
-    "build-template/src/frontend/src/components/ui/chart.tsx",
-    "build-template/src/frontend/src/components/ui/checkbox.tsx",
-    "build-template/src/frontend/src/components/ui/collapsible.tsx",
-    "build-template/src/frontend/src/components/ui/command.tsx",
-    "build-template/src/frontend/src/components/ui/context-menu.tsx",
-    "build-template/src/frontend/src/components/ui/dialog.tsx",
-    "build-template/src/frontend/src/components/ui/drawer.tsx",
-    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
-    "build-template/src/frontend/src/components/ui/form.tsx",
-    "build-template/src/frontend/src/components/ui/hover-card.tsx",
-    "build-template/src/frontend/src/components/ui/input-otp.tsx",
-    "build-template/src/frontend/src/components/ui/input.tsx",
-    "build-template/src/frontend/src/components/ui/label.tsx",
-    "build-template/src/frontend/src/components/ui/menubar.tsx",
-    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
-    "build-template/src/frontend/src/components/ui/pagination.tsx",
-    "build-template/src/frontend/src/components/ui/popover.tsx",
-    "build-template/src/frontend/src/components/ui/progress.tsx",
-    "build-template/src/frontend/src/components/ui/radio-group.tsx",
-    "build-template/src/frontend/src/components/ui/resizable.tsx",
-    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
-    "build-template/src/frontend/src/components/ui/select.tsx",
-    "build-template/src/frontend/src/components/ui/separator.tsx",
-    "build-template/src/frontend/src/components/ui/sheet.tsx",
-    "build-template/src/frontend/src/components/ui/sidebar.tsx",
-    "build-template/src/frontend/src/components/ui/skeleton.tsx",
-    "build-template/src/frontend/src/components/ui/slider.tsx",
-    "build-template/src/frontend/src/components/ui/sonner.tsx",
-    "build-template/src/frontend/src/components/ui/switch.tsx",
-    "build-template/src/frontend/src/components/ui/table.tsx",
-    "build-template/src/frontend/src/components/ui/tabs.tsx",
-    "build-template/src/frontend/src/components/ui/textarea.tsx",
-    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
-    "build-template/src/frontend/src/components/ui/toggle.tsx",
-    "build-template/src/frontend/src/components/ui/tooltip.tsx",
-    "build-template/src/frontend/src/hooks/use-mobile.tsx",
-    "build-template/src/frontend/src/lib/utils.ts",
-    "build-template/src/frontend/tsconfig.json",
-    "build-template/src/frontend/vite.config.js",
-    "build-template/tsconfig.json",
     "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.css",
-    "frontend/index.html",
     "frontend/src/App.tsx",
     "frontend/src/backend.d.ts",
     "frontend/src/backend.ts",
-    "frontend/src/components/scheduler/GroomerSelectList.tsx",
-    "frontend/src/components/scheduler/ServiceList.tsx",
-    "frontend/src/config.ts",
+    "frontend/src/components/onboarding/GroomerRegistrationForm.tsx",
+    "frontend/src/components/onboarding/ServiceManagementSection.tsx",
     "frontend/src/declarations/backend.did.d.ts",
     "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useActor.ts",
     "frontend/src/hooks/useGroomerServices.ts",
-    "frontend/src/hooks/useGroomers.ts",
-    "frontend/src/hooks/useInternetIdentity.ts",
-    "frontend/src/index.css",
-    "frontend/src/main.tsx",
+    "frontend/src/hooks/useRegisterGroomer.ts",
+    "frontend/src/pages/GroomerOnboardPage.tsx",
     "frontend/src/pages/GroomerSchedulerPage.tsx",
-    "frontend/src/ui-summary.json",
-    "frontend/src/utils/StorageClient.ts",
-    "frontend/tailwind.config.js",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

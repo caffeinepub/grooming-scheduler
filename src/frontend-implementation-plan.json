@@ -1,99 +1,128 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Grooming Scheduler — Groomer selection + services flow (React Query)",
+  "title": "Create groomer onboarding page with signup and service management",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Build a scheduler-style UI flow to select a groomer and then view services for the selected groomer, with clear selection state and ability to change groomer.",
+      "id": "REQ-19",
+      "summary": "Create a new frontend page/route for groomer onboarding at /groomer-onboard that allows groomers to sign up and register with the platform",
       "acceptanceCriteria": [
-        "A dedicated page/screen exists that presents a list of groomers with clear selection affordances.",
-        "When a groomer is selected, the UI transitions (same page or next step) to display services for that groomer only.",
-        "The page includes a clear indicator of the currently selected groomer and an easy way to change the selection (e.g., back button or change groomer control).",
-        "User-facing text is in English."
+        "A new route /groomer-onboard is accessible in the application",
+        "The page displays a signup form for groomers",
+        "The page uses the existing Chewy blue color palette consistently"
       ],
       "file_operations": [
+        {
+          "path": "frontend/src/pages/GroomerOnboardPage.tsx",
+          "operation": "create",
+          "description": "Create the main groomer onboarding page component with route at /groomer-onboard, displaying a signup form for groomers using the existing Chewy blue color tokens and consistent styling from the scheduler page."
+        },
         {
           "path": "frontend/src/App.tsx",
-          "operation": "create",
-          "description": "Create the app shell and wire in routing/navigation to the scheduler flow page (ensure the groomer selection/services step UI is reachable). Use shadcn-ui layout primitives (e.g., Card/Button) where appropriate; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/GroomerSchedulerPage.tsx",
-          "operation": "create",
-          "description": "Implement the scheduler-style two-step UI: (1) groomer selection list with clear affordances; (2) services list filtered to the selected groomer, including a visible selected-groomer indicator and a 'change groomer' control to return to selection. Use shadcn-ui components for polished UI (e.g., Card, Button, Badge, Separator); verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/scheduler/GroomerSelectList.tsx",
-          "operation": "create",
-          "description": "Create a focused UI component that renders the groomer list with selection affordances and highlights the current selection. Use shadcn-ui components for list item styling and selection states; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/scheduler/ServiceList.tsx",
-          "operation": "create",
-          "description": "Create a focused UI component that renders the selected groomer’s services (title/description/price range) and supports empty states. Use shadcn-ui components (e.g., Card, Badge) for consistent styling; verify the component's usage instructions before implementing."
+          "operation": "modify",
+          "description": "Add routing configuration to register the /groomer-onboard route and render the GroomerOnboardPage component, enabling navigation to the groomer onboarding flow."
         }
       ]
     },
     {
-      "id": "REQ-3",
-      "summary": "Fetch groomers and services from the backend using React Query with loading, error, and retry states.",
+      "id": "REQ-20",
+      "summary": "Design the groomer onboarding flow to collect groomer details including name, contact information, business information, and any other relevant registration fields",
       "acceptanceCriteria": [
-        "Groomer list loads from the backend and shows a loading state while fetching.",
-        "Selecting a groomer triggers fetching of that groomer’s services from the backend and shows a loading state while fetching.",
-        "Errors fetching groomers or services are displayed in the UI with an option to retry."
+        "Form fields capture groomer name, email, phone, and business name at minimum",
+        "Form validation provides clear feedback for required and invalid fields",
+        "The form layout follows the existing scheduler page design patterns"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/hooks/useGroomers.ts",
+          "path": "frontend/src/components/onboarding/GroomerRegistrationForm.tsx",
           "operation": "create",
-          "description": "Add a React Query hook that uses the existing useActor hook to fetch the groomer list from the backend and exposes loading/error/refetch state."
-        },
-        {
-          "path": "frontend/src/hooks/useGroomerServices.ts",
-          "operation": "create",
-          "description": "Add a React Query hook that fetches services for a provided groomer id (enabled only when a groomer is selected) and exposes loading/error/refetch state."
-        },
-        {
-          "path": "frontend/src/pages/GroomerSchedulerPage.tsx",
-          "operation": "modify",
-          "description": "Connect UI to the React Query hooks: show loading skeletons/spinners while fetching, show an error alert with retry on failures, and trigger services fetching on groomer selection. Use shadcn-ui feedback components (e.g., Alert, Skeleton) for loading/error states; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/scheduler/GroomerSelectList.tsx",
-          "operation": "modify",
-          "description": "Add props to support loading and error UI presentation from React Query state, and a retry action surface when grooming list fetch fails. Use shadcn-ui components for consistent error display; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/scheduler/ServiceList.tsx",
-          "operation": "modify",
-          "description": "Add props to support loading and error UI presentation from React Query state, and a retry action surface when services fetch fails. Use shadcn-ui components for consistent error display; verify the component's usage instructions before implementing."
+          "description": "Create a form component capturing groomer profile fields (name, email, phone, business name) with validation, error feedback, and consistent styling matching the scheduler page design patterns and Chewy blue theme."
         }
       ]
     },
     {
-      "id": "REQ-4",
-      "summary": "Apply a modern, pet-care-adjacent theme with consistent typography/spacing and a non-blue/non-purple primary brand color; ensure responsive layout.",
+      "id": "REQ-21",
+      "summary": "Add a service listing interface within the groomer onboarding flow that allows groomers to add, edit, and remove their service offerings with title, description, and price range",
       "acceptanceCriteria": [
-        "The groomer selection and services list screens share consistent typography, spacing, and component styling.",
-        "Primary/brand color is not blue or purple.",
-        "Layout is responsive and usable on mobile and desktop widths."
+        "Groomers can add multiple services with title, description, and price range fields",
+        "Each service entry can be edited or removed before submission",
+        "The service list UI is clear and easy to use"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/components/onboarding/ServiceManagementSection.tsx",
           "operation": "create",
-          "description": "Define global theme tokens (CSS variables consumed by Tailwind/shadcn-ui) using a modern pet-care palette with a primary color that is not blue or purple (e.g., warm green/amber). Ensure consistent typography and base background/foreground variables across the app. Verify the component's usage instructions before implementing."
+          "description": "Create a service management UI component allowing groomers to add, edit, and remove service entries with title, description, and price range fields, ensuring clear and intuitive list management with Chewy blue styling."
+        }
+      ]
+    },
+    {
+      "id": "REQ-22",
+      "summary": "Apply the existing Chewy blue color scheme and typography from the scheduler page consistently across all groomer onboarding UI elements including buttons, form inputs, focus states, and interactive elements",
+      "acceptanceCriteria": [
+        "All primary buttons use Chewy blue styling matching the scheduler page",
+        "Form input focus states use Chewy blue borders and rings",
+        "Typography matches the existing scheduler page fonts and hierarchy",
+        "The visual theme is consistent with the scheduler flow in both light and dark modes"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/GroomerOnboardPage.tsx",
+          "operation": "modify",
+          "description": "Ensure the onboarding page applies Chewy blue color tokens and typography consistently across all UI elements, matching the scheduler page theme in both light and dark modes."
         },
         {
-          "path": "frontend/tailwind.config.js",
+          "path": "frontend/src/components/onboarding/GroomerRegistrationForm.tsx",
           "operation": "modify",
-          "description": "Adjust Tailwind theme configuration only as needed to support the chosen palette/typography/spacing system while keeping consistency with existing CSS-variable-based colors (ensure primary is not blue/purple)."
+          "description": "Apply Chewy blue focus states, button styling, and typography to all form inputs and interactive elements, ensuring consistency with the scheduler page design."
         },
+        {
+          "path": "frontend/src/components/onboarding/ServiceManagementSection.tsx",
+          "operation": "modify",
+          "description": "Apply Chewy blue styling to service management buttons, inputs, and interactive elements, ensuring consistent theming with the scheduler page."
+        }
+      ]
+    },
+    {
+      "id": "REQ-24",
+      "summary": "Connect the groomer onboarding frontend form to the backend registration methods using React Query, including loading states during submission and success/error feedback after submission",
+      "acceptanceCriteria": [
+        "Form submission triggers a backend call to register the groomer",
+        "Loading spinner or disabled state appears during submission",
+        "Success message displays when registration completes successfully",
+        "Error message displays with retry option if registration fails"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useRegisterGroomer.ts",
+          "operation": "create",
+          "description": "Create a React Query mutation hook that calls the backend registerGroomer method, handling loading states, success responses, and error handling for groomer registration."
+        },
+        {
+          "path": "frontend/src/pages/GroomerOnboardPage.tsx",
+          "operation": "modify",
+          "description": "Integrate the useRegisterGroomer hook to handle form submission, display loading states during backend calls, show success feedback on completion, and display error messages with retry options on failure."
+        }
+      ]
+    },
+    {
+      "id": "REQ-25",
+      "summary": "Add navigation from the scheduler page to the groomer onboarding page, and vice versa, so users can easily access both flows",
+      "acceptanceCriteria": [
+        "A clearly labeled link or button on the scheduler page navigates to /groomer-onboard",
+        "A link or button on the onboarding page returns to the scheduler",
+        "Navigation preserves the existing Chewy blue styling"
+      ],
+      "file_operations": [
         {
           "path": "frontend/src/pages/GroomerSchedulerPage.tsx",
           "operation": "modify",
-          "description": "Apply consistent spacing, typography hierarchy, and responsive layout (mobile-first, scales to desktop) across both steps of the scheduler flow. Use shadcn-ui components and Tailwind utility classes for a cohesive look; verify the component's usage instructions before implementing."
+          "description": "Add a clearly labeled navigation link or button that routes to /groomer-onboard, styled with Chewy blue tokens to maintain visual consistency."
+        },
+        {
+          "path": "frontend/src/pages/GroomerOnboardPage.tsx",
+          "operation": "modify",
+          "description": "Add a navigation link or button that returns users to the scheduler page, ensuring Chewy blue styling consistency."
         }
       ]
     }

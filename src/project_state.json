@@ -1,11 +1,17 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 3,
-  "summary": "Build a scheduler-style page (inspired by Chewy Vet Care scheduler) where, after selecting a groomer, the user sees a list of that groomer’s available services.",
+  "projectStateVersion": 17,
+  "summary": "Build a scheduler-style page (inspired by Chewy Vet Care scheduler) where, after selecting a groomer, the user sees a list of that groomer's available services, can click a blue \"Book Now\" button to open a date-selection popup, and proceed with booking. Additionally, create a groomer onboarding page/flow where groomers can sign up, list their services, and provide other details (using the existing Chewy blue color palette and fonts).",
   "architectural_notes": [
-    "Use https://www.chewy.com/vet-care/scheduler as a UX/context reference for the scheduler flow."
+    "Use https://www.chewy.com/vet-care/scheduler as a UX/context reference for the scheduler flow.",
+    "Visual direction update: use Chewy blue for button outlines and include a paw symbol in the UI.",
+    "Update Chewy blue palette/token to a darker shade based on the attached image; ensure the updated shade is applied consistently across all scheduler UI elements and states."
   ],
-  "known_issues": [],
+  "known_issues": [
+    "Potential conflict: existing theme guidance says not to use blue/purple as primary colors, but user requested Chewy blue for button outlines and paw symbol styling.",
+    "Chewy blue outline button styling appears not applied; buttons are showing green instead of the requested Chewy blue.",
+    "Groomer list fails to load (UI shows: \"Error Loading Groomers\" / \"We couldn't load the groomer list. Please try again.\")."
+  ],
   "isFixRequest": false,
   "existing_features": [
     {
@@ -31,6 +37,158 @@
         "REQ-4"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-sample-groomer-data-so-the-groomer-selection-step-shows-multiple-groomers-by-default-each-with-a-pet-photo-and-a-non-empty-list-of-services",
+      "title": "Add sample groomer data so the groomer selection step shows multiple groomers by default, each with a pet photo and a non-empty list of services.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-groomer-selection-ui-to-display-each-groomer-s-pet-photo-on-the-groomer-card-using-locally-served-static-assets-not-fetched-through-the-backend",
+      "title": "Update the groomer selection UI to display each groomer’s pet photo on the groomer card using locally-served static assets (not fetched through the backend).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-scheduler-page-theme-so-chewy-blue-is-used-for-outline-button-borders-e-g-retry-outline-buttons-and-associated-hover-focus-ring-styling-without-modifying-any-files-under-frontend-src-components-ui",
+      "title": "Update the scheduler page theme so Chewy blue is used for outline button borders (e.g., Retry outline buttons) and associated hover/focus ring styling, without modifying any files under frontend/src/components/ui.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-style-the-paw-symbol-in-the-scheduler-header-using-chewy-blue-icon-stroke-fill-and-its-surrounding-badge-background-accent-and-ensure-the-same-chewy-blue-is-used-consistently-anywhere-the-paw-symbol-appears-in-the-scheduler-ui",
+      "title": "Style the paw symbol in the scheduler header using Chewy blue (icon stroke/fill and its surrounding badge background accent) and ensure the same Chewy blue is used consistently anywhere the paw symbol appears in the scheduler UI.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-scheduler-flow-ui-so-the-buttons-the-user-interacts-with-including-the-primary-action-button-on-groomer-cards-and-navigation-buttons-within-the-scheduler-page-use-chewy-blue-styling-instead-of-the-default-green-primary-styling-without-changing-any-files-under-frontend-src-components-ui",
+      "title": "Update the scheduler flow UI so the buttons the user interacts with (including the primary action button on groomer cards and navigation buttons within the scheduler page) use Chewy blue styling instead of the default green primary styling, without changing any files under frontend/src/components/ui.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-prevent-the-groomer-selection-step-from-showing-the-error-state-when-the-backend-groomer-fetch-fails-by-falling-back-to-the-existing-sample-groomer-data-and-still-rendering-the-groomer-cards-including-local-pet-photos",
+      "title": "Prevent the groomer selection step from showing the error state when the backend groomer fetch fails by falling back to the existing sample groomer data and still rendering the groomer cards (including local pet photos).",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-when-falling-back-to-sample-groomers-due-to-a-backend-fetch-failure-surface-a-non-blocking-indication-e-g-a-brief-inline-note-or-toast-that-sample-data-is-being-shown-and-log-the-underlying-error-to-the-browser-console-for-debugging",
+      "title": "When falling back to sample groomers due to a backend fetch failure, surface a non-blocking indication (e.g., a brief inline note or toast) that sample data is being shown, and log the underlying error to the browser console for debugging.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-retry-action-on-the-groomer-error-ui-if-it-still-appears-for-any-reason-triggers-a-fresh-fetch-attempt-and-then-correctly-transitions-to-showing-either-backend-data-if-successful-or-the-sample-data-fallback-if-unsuccessful",
+      "title": "Ensure the Retry action on the groomer error UI (if it still appears for any reason) triggers a fresh fetch attempt and then correctly transitions to showing either backend data (if successful) or the sample-data fallback (if unsuccessful).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-darken-the-existing-chewy-blue-color-used-across-the-scheduler-ui-to-better-match-the-attached-reference-image-and-apply-the-updated-chewy-blue-consistently-to-all-chewy-themed-ui-states-buttons-outlines-focus-rings-links-and-the-paw-icon-badge-in-both-light-and-dark-modes",
+      "title": "Darken the existing Chewy blue color used across the scheduler UI to better match the attached reference image, and apply the updated Chewy blue consistently to all Chewy-themed UI states (buttons, outlines, focus rings, links, and the paw icon/badge) in both light and dark modes.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-expand-the-sample-groomer-data-so-each-default-sample-groomer-shows-a-larger-list-of-available-services-more-than-the-current-1-2-items-with-realistic-titles-descriptions-and-price-ranges",
+      "title": "Expand the sample groomer data so each default/sample groomer shows a larger list of available services (more than the current 1–2 items), with realistic titles, descriptions, and price ranges.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-blue-book-now-button-for-each-service-in-the-selected-groomer-s-services-list-clicking-book-now-must-open-a-popup-modal-that-allows-selecting-a-date-and-then-proceeding-all-booking-ui-elements-button-modal-actions-focus-hover-states-must-use-the-chewy-blue-styling",
+      "title": "Add a blue “Book Now” button for each service in the selected groomer’s services list. Clicking “Book Now” must open a popup/modal that allows selecting a date and then proceeding. All booking UI elements (button, modal actions, focus/hover states) must use the Chewy blue styling.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-groomer-grid-cards-groomer-selection-step-to-display-a-short-english-description-for-each-groomer-within-the-card-in-addition-to-the-groomer-name-rating-photo-and-service-count",
+      "title": "Update the groomer grid cards (groomer selection step) to display a short English description for each groomer within the card (in addition to the groomer name, rating, photo, and service count).",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-services-list-grid-items-to-include-additional-english-descriptive-text-for-each-service-entry-so-that-every-service-tile-card-clearly-communicates-what-the-service-includes-beyond-just-the-title-and-price-range",
+      "title": "Update the services list/grid items to include additional English descriptive text for each service entry so that every service tile/card clearly communicates what the service includes (beyond just the title and price range).",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-new-frontend-page-route-for-groomer-onboarding-at-groomer-onboard-that-allows-groomers-to-sign-up-and-register-with-the-platform",
+      "title": "Create a new frontend page/route for groomer onboarding at /groomer-onboard that allows groomers to sign up and register with the platform",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-the-groomer-onboarding-flow-to-collect-groomer-details-including-name-contact-information-business-information-and-any-other-relevant-registration-fields",
+      "title": "Design the groomer onboarding flow to collect groomer details including name, contact information, business information, and any other relevant registration fields",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-service-listing-interface-within-the-groomer-onboarding-flow-that-allows-groomers-to-add-edit-and-remove-their-service-offerings-with-title-description-and-price-range",
+      "title": "Add a service listing interface within the groomer onboarding flow that allows groomers to add, edit, and remove their service offerings with title, description, and price range",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-the-existing-chewy-blue-color-scheme-and-typography-from-the-scheduler-page-consistently-across-all-groomer-onboarding-ui-elements-including-buttons-form-inputs-focus-states-and-interactive-elements",
+      "title": "Apply the existing Chewy blue color scheme and typography from the scheduler page consistently across all groomer onboarding UI elements including buttons, form inputs, focus states, and interactive elements",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-connect-the-groomer-onboarding-frontend-form-to-the-backend-registration-methods-using-react-query-including-loading-states-during-submission-and-success-error-feedback-after-submission",
+      "title": "Connect the groomer onboarding frontend form to the backend registration methods using React Query, including loading states during submission and success/error feedback after submission",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-navigation-from-the-scheduler-page-to-the-groomer-onboarding-page-and-vice-versa-so-users-can-easily-access-both-flows",
+      "title": "Add navigation from the scheduler page to the groomer onboarding page, and vice versa, so users can easily access both flows",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -45,6 +203,64 @@
       "summary": "Implement backend data and APIs to provide (1) the list of groomers and (2) the list of services for a given groomer, so the frontend can render real data rather than hardcoded UI-only state.",
       "reqIds": [
         "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add sample groomers with pet pictures (seed/mock data) for the groomer selection UI.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Update visual styling to use Chewy blue for button outlines and include a paw symbol icon in the scheduler page UI.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Verify the Chewy color tokens are correctly applied and available in Tailwind/CSS so that any class names using chewy (e.g., border-chewy, text-chewy, bg-chewy, focus-visible:ring-chewy, bg-chewy-soft) render in Chewy blue in both light and dark modes on the scheduler page.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Darken the Chewy blue used across the scheduler UI to better match the attached reference image (apply consistently to buttons, outlines, paw icon, and interactive states).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Expand each groomer’s available services list so each groomer shows more services by default.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Add a blue “Book Now” button for services/groomers that opens a popup/modal to select a date and proceed with booking.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Add descriptive text in each grid item to describe the groomer and the service (e.g., short descriptions on groomer cards and service tiles).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Create a groomer onboarding page/flow where groomers can sign up, list their services, and provide other details (using the existing Chewy blue styling and fonts).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Create backend methods in the main Motoko actor to handle groomer registration, including storing groomer profile data and their listed services",
+      "reqIds": [
+        "REQ-23"
       ],
       "status": "pending"
     }

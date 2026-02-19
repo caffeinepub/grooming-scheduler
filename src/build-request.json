@@ -1,95 +1,150 @@
 {
   "kind": "build_request",
-  "title": "Groomer selection page with services list (Chewy scheduler-inspired)",
-  "projectName": "Grooming Scheduler",
+  "title": "Create groomer onboarding page with signup and service management",
+  "projectName": "Groomer Onboarding",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "Create a scheduler-style UI flow (inspired by https://www.chewy.com/vet-care/scheduler) where the user can select a groomer and then view a list of services offered by that selected groomer.",
+      "id": "REQ-19",
+      "text": "Create a new frontend page/route for groomer onboarding at /groomer-onboard that allows groomers to sign up and register with the platform",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-2",
-          "msg-3"
+          "msg-7"
         ],
         "quotes": [
-          "https://www.chewy.com/vet-care/scheduler , use this as context , i'm looking for a page that list services from groomers once i select them"
+          "create a page, where groomers would like to onboard with chewy.com",
+          "grromer would lile to sign up"
         ]
       },
       "acceptanceCriteria": [
-        "A dedicated page/screen exists that presents a list of groomers with clear selection affordances.",
-        "When a groomer is selected, the UI transitions (same page or next step) to display services for that groomer only.",
-        "The page includes a clear indicator of the currently selected groomer and an easy way to change the selection (e.g., back button or change groomer control).",
-        "User-facing text is in English."
+        "A new route /groomer-onboard is accessible in the application",
+        "The page displays a signup form for groomers",
+        "The page uses the existing Chewy blue color palette consistently"
       ]
     },
     {
-      "id": "REQ-2",
-      "text": "Implement backend data and APIs to provide (1) the list of groomers and (2) the list of services for a given groomer, so the frontend can render real data rather than hardcoded UI-only state.",
+      "id": "REQ-20",
+      "text": "Design the groomer onboarding flow to collect groomer details including name, contact information, business information, and any other relevant registration fields",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "list their services and other details"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Form fields capture groomer name, email, phone, and business name at minimum",
+        "Form validation provides clear feedback for required and invalid fields",
+        "The form layout follows the existing scheduler page design patterns"
+      ]
+    },
+    {
+      "id": "REQ-21",
+      "text": "Add a service listing interface within the groomer onboarding flow that allows groomers to add, edit, and remove their service offerings with title, description, and price range",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "list their services and other details"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Groomers can add multiple services with title, description, and price range fields",
+        "Each service entry can be edited or removed before submission",
+        "The service list UI is clear and easy to use"
+      ]
+    },
+    {
+      "id": "REQ-22",
+      "text": "Apply the existing Chewy blue color scheme and typography from the scheduler page consistently across all groomer onboarding UI elements including buttons, form inputs, focus states, and interactive elements",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "use the ewarlier color and font s"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All primary buttons use Chewy blue styling matching the scheduler page",
+        "Form input focus states use Chewy blue borders and rings",
+        "Typography matches the existing scheduler page fonts and hierarchy",
+        "The visual theme is consistent with the scheduler flow in both light and dark modes"
+      ]
+    },
+    {
+      "id": "REQ-23",
+      "text": "Create backend methods in the main Motoko actor to handle groomer registration, including storing groomer profile data and their listed services",
       "target": "backend",
       "source": {
         "messageIds": [
-          "msg-2",
-          "msg-3"
+          "msg-7"
         ],
         "quotes": [
-          "i'm looking for a page that list services from groomers once i select them"
+          "create a page, where groomers would like to onboard with chewy.com",
+          "list their services and other details"
         ]
       },
       "acceptanceCriteria": [
-        "Backend exposes a query method to list groomers.",
-        "Backend exposes a query method to list services for a specific groomer identifier.",
-        "Returned data includes stable identifiers and display names for groomers and services.",
-        "The backend can be initialized with seed/sample groomers and services so the UI is usable immediately after deployment."
+        "Backend exposes a method to register a new groomer with profile details",
+        "Backend can store and associate multiple services with a groomer ID",
+        "Groomer data persists across canister upgrades using stable storage"
       ]
     },
     {
-      "id": "REQ-3",
-      "text": "Connect the groomer/services UI to the backend using React Query, including loading and error states for fetching groomers and services.",
-      "target": "frontend",
+      "id": "REQ-24",
+      "text": "Connect the groomer onboarding frontend form to the backend registration methods using React Query, including loading states during submission and success/error feedback after submission",
+      "target": "both",
       "source": {
         "messageIds": [
-          "msg-2",
-          "msg-3"
+          "msg-7"
         ],
         "quotes": [
-          "i'm looking for a page that list services from groomers once i select them"
+          "grromer would lile to sign up, list their services and other details"
         ]
       },
       "acceptanceCriteria": [
-        "Groomer list loads from the backend and shows a loading state while fetching.",
-        "Selecting a groomer triggers fetching of that groomer’s services from the backend and shows a loading state while fetching.",
-        "Errors fetching groomers or services are displayed in the UI with an option to retry."
+        "Form submission triggers a backend call to register the groomer",
+        "Loading spinner or disabled state appears during submission",
+        "Success message displays when registration completes successfully",
+        "Error message displays with retry option if registration fails"
       ]
     },
     {
-      "id": "REQ-4",
-      "text": "Apply a coherent, polished visual theme for the scheduler flow (colors, typography, spacing, and components) that feels modern and pet-care adjacent, and keep it consistent across the groomer selection and services list steps (do not use blue/purple as primary colors).",
+      "id": "REQ-25",
+      "text": "Add navigation from the scheduler page to the groomer onboarding page, and vice versa, so users can easily access both flows",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "use this as context"
+          "msg-7"
         ]
       },
       "acceptanceCriteria": [
-        "The groomer selection and services list screens share consistent typography, spacing, and component styling.",
-        "Primary/brand color is not blue or purple.",
-        "Layout is responsive and usable on mobile and desktop widths."
+        "A clearly labeled link or button on the scheduler page navigates to /groomer-onboard",
+        "A link or button on the onboarding page returns to the scheduler",
+        "Navigation preserves the existing Chewy blue styling"
       ]
     }
   ],
   "constraints": [
-    "Backend must remain a single Motoko actor (all logic in backend/main.mo).",
-    "Do not edit files under frontend immutable paths (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui); compose them instead."
+    "Do not modify files under frontend/src/components/ui (immutable UI components)",
+    "Do not modify frontend/src/hooks/useInternetIdentity.ts or frontend/src/hooks/useInternetIdentity.tsx",
+    "Do not modify frontend/src/hooks/useActor.ts or frontend/src/main.tsx",
+    "Maintain single-actor architecture in backend/main.mo",
+    "Use the existing Chewy blue color tokens defined in frontend/index.css without changing the theme configuration"
   ],
   "nonGoals": [
-    "Implementing appointment time-slot selection, calendar availability, or booking/checkout flows.",
-    "Implementing payments, notifications, or third-party authentication beyond Internet Identity.",
-    "Building an admin UI to manage groomers/services (seed/sample data is sufficient for this build)."
+    "Payment processing or Stripe integration for groomer registration fees",
+    "Email verification or SMS authentication for groomer accounts",
+    "Admin approval workflow for groomer applications",
+    "Photo upload functionality for groomer profile pictures",
+    "Availability calendar management for groomers"
   ],
   "imageRequirements": {
     "required": [],

@@ -22,14 +22,10 @@ export interface Service {
   'priceRange' : [bigint, bigint],
 }
 export interface _SERVICE {
-  'addGroomer' : ActorMethod<[string], undefined>,
-  'addServiceToGroomer' : ActorMethod<
-    [bigint, string, string, [bigint, bigint]],
-    undefined
-  >,
   'getAllGroomers' : ActorMethod<[], Array<Groomer>>,
-  'getGroomer' : ActorMethod<[bigint], Groomer>,
-  'getServicesForGroomer' : ActorMethod<[bigint], Array<Service>>,
+  'getGroomer' : ActorMethod<[bigint], [] | [Groomer]>,
+  'registerGroomer' : ActorMethod<[string, Array<Service>], bigint>,
+  'updateGroomerServices' : ActorMethod<[bigint, Array<Service>], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

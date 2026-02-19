@@ -19,9 +19,8 @@ export interface Groomer {
     services: Array<Service>;
 }
 export interface backendInterface {
-    addGroomer(name: string): Promise<void>;
-    addServiceToGroomer(groomerId: bigint, title: string, description: string, priceRange: [bigint, bigint]): Promise<void>;
     getAllGroomers(): Promise<Array<Groomer>>;
-    getGroomer(groomerId: bigint): Promise<Groomer>;
-    getServicesForGroomer(groomerId: bigint): Promise<Array<Service>>;
+    getGroomer(groomerId: bigint): Promise<Groomer | null>;
+    registerGroomer(name: string, services: Array<Service>): Promise<bigint>;
+    updateGroomerServices(groomerId: bigint, services: Array<Service>): Promise<void>;
 }

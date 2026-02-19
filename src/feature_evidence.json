@@ -2,12 +2,104 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-create-a-scheduler-style-ui-flow-inspired-by-https-www-chewy-com-vet-care-scheduler-where-the-user-can-select-a-groomer-and-then-view-a-list-of-services-offered-by-that-selected-groomer",
-      "featureTitle": "Create a scheduler-style UI flow (inspired by https://www.chewy.com/vet-care/scheduler) where the user can select a groomer and then view a list of services offered by that selected groomer.",
+      "featureId": "feature-create-a-new-frontend-page-route-for-groomer-onboarding-at-groomer-onboard-that-allows-groomers-to-sign-up-and-register-with-the-platform",
+      "featureTitle": "Create a new frontend page/route for groomer onboarding at /groomer-onboard that allows groomers to sign up and register with the platform",
       "files": [
         "frontend/src/App.tsx",
-        "frontend/src/components/scheduler/GroomerSelectList.tsx",
-        "frontend/src/components/scheduler/ServiceList.tsx",
+        "frontend/src/pages/GroomerOnboardPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-19"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-design-the-groomer-onboarding-flow-to-collect-groomer-details-including-name-contact-information-business-information-and-any-other-relevant-registration-fields",
+      "featureTitle": "Design the groomer onboarding flow to collect groomer details including name, contact information, business information, and any other relevant registration fields",
+      "files": [
+        "frontend/src/components/onboarding/GroomerRegistrationForm.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-20"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-service-listing-interface-within-the-groomer-onboarding-flow-that-allows-groomers-to-add-edit-and-remove-their-service-offerings-with-title-description-and-price-range",
+      "featureTitle": "Add a service listing interface within the groomer onboarding flow that allows groomers to add, edit, and remove their service offerings with title, description, and price range",
+      "files": [
+        "frontend/src/components/onboarding/ServiceManagementSection.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-21"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-the-existing-chewy-blue-color-scheme-and-typography-from-the-scheduler-page-consistently-across-all-groomer-onboarding-ui-elements-including-buttons-form-inputs-focus-states-and-interactive-elements",
+      "featureTitle": "Apply the existing Chewy blue color scheme and typography from the scheduler page consistently across all groomer onboarding UI elements including buttons, form inputs, focus states, and interactive elements",
+      "files": [
+        "frontend/src/components/onboarding/GroomerRegistrationForm.tsx",
+        "frontend/src/components/onboarding/ServiceManagementSection.tsx",
+        "frontend/src/pages/GroomerOnboardPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-22"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-connect-the-groomer-onboarding-frontend-form-to-the-backend-registration-methods-using-react-query-including-loading-states-during-submission-and-success-error-feedback-after-submission",
+      "featureTitle": "Connect the groomer onboarding frontend form to the backend registration methods using React Query, including loading states during submission and success/error feedback after submission",
+      "files": [
+        "frontend/src/hooks/useRegisterGroomer.ts",
+        "frontend/src/pages/GroomerOnboardPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-24"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-navigation-from-the-scheduler-page-to-the-groomer-onboarding-page-and-vice-versa-so-users-can-easily-access-both-flows",
+      "featureTitle": "Add navigation from the scheduler page to the groomer onboarding page, and vice versa, so users can easily access both flows",
+      "files": [
+        "frontend/src/pages/GroomerOnboardPage.tsx",
         "frontend/src/pages/GroomerSchedulerPage.tsx"
       ],
       "components": [
@@ -18,49 +110,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-connect-the-groomer-services-ui-to-the-backend-using-react-query-including-loading-and-error-states-for-fetching-groomers-and-services",
-      "featureTitle": "Connect the groomer/services UI to the backend using React Query, including loading and error states for fetching groomers and services.",
-      "files": [
-        "frontend/src/components/scheduler/GroomerSelectList.tsx",
-        "frontend/src/components/scheduler/ServiceList.tsx",
-        "frontend/src/hooks/useGroomerServices.ts",
-        "frontend/src/hooks/useGroomers.ts",
-        "frontend/src/pages/GroomerSchedulerPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-apply-a-coherent-polished-visual-theme-for-the-scheduler-flow-colors-typography-spacing-and-components-that-feels-modern-and-pet-care-adjacent-and-keep-it-consistent-across-the-groomer-selection-and-services-list-steps-do-not-use-blue-purple-as-primary-colors",
-      "featureTitle": "Apply a coherent, polished visual theme for the scheduler flow (colors, typography, spacing, and components) that feels modern and pet-care adjacent, and keep it consistent across the groomer selection and services list steps (do not use blue/purple as primary colors).",
-      "files": [
-        "frontend/src/index.css",
-        "frontend/src/pages/GroomerSchedulerPage.tsx",
-        "frontend/tailwind.config.js"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
+        "REQ-25"
       ],
       "confidence": "high"
     }

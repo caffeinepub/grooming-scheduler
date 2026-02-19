@@ -101,42 +101,14 @@ export interface Groomer {
     services: Array<Service>;
 }
 export interface backendInterface {
-    addGroomer(name: string): Promise<void>;
-    addServiceToGroomer(groomerId: bigint, title: string, description: string, priceRange: [bigint, bigint]): Promise<void>;
     getAllGroomers(): Promise<Array<Groomer>>;
-    getGroomer(groomerId: bigint): Promise<Groomer>;
-    getServicesForGroomer(groomerId: bigint): Promise<Array<Service>>;
+    getGroomer(groomerId: bigint): Promise<Groomer | null>;
+    registerGroomer(name: string, services: Array<Service>): Promise<bigint>;
+    updateGroomerServices(groomerId: bigint, services: Array<Service>): Promise<void>;
 }
+import type { Groomer as _Groomer } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
-    async addGroomer(arg0: string): Promise<void> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.addGroomer(arg0);
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.addGroomer(arg0);
-            return result;
-        }
-    }
-    async addServiceToGroomer(arg0: bigint, arg1: string, arg2: string, arg3: [bigint, bigint]): Promise<void> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.addServiceToGroomer(arg0, arg1, arg2, arg3);
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.addServiceToGroomer(arg0, arg1, arg2, arg3);
-            return result;
-        }
-    }
     async getAllGroomers(): Promise<Array<Groomer>> {
         if (this.processError) {
             try {
@@ -151,34 +123,51 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async getGroomer(arg0: bigint): Promise<Groomer> {
+    async getGroomer(arg0: bigint): Promise<Groomer | null> {
         if (this.processError) {
             try {
                 const result = await this.actor.getGroomer(arg0);
-                return result;
+                return from_candid_opt_n1(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getGroomer(arg0);
-            return result;
+            return from_candid_opt_n1(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getServicesForGroomer(arg0: bigint): Promise<Array<Service>> {
+    async registerGroomer(arg0: string, arg1: Array<Service>): Promise<bigint> {
         if (this.processError) {
             try {
-                const result = await this.actor.getServicesForGroomer(arg0);
+                const result = await this.actor.registerGroomer(arg0, arg1);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.getServicesForGroomer(arg0);
+            const result = await this.actor.registerGroomer(arg0, arg1);
             return result;
         }
     }
+    async updateGroomerServices(arg0: bigint, arg1: Array<Service>): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateGroomerServices(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateGroomerServices(arg0, arg1);
+            return result;
+        }
+    }
+}
+function from_candid_opt_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_Groomer]): Groomer | null {
+    return value.length === 0 ? null : value[0];
 }
 export interface CreateActorOptions {
     agent?: Agent;

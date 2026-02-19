@@ -1,13 +1,15 @@
 # Specification
 
 ## Summary
-**Goal:** Build a scheduler-style flow where users select a groomer and then view only that groomer’s services, backed by real data and presented with a modern pet-care themed UI.
+**Goal:** Create a groomer onboarding page where groomers can sign up, list their services, and register with the platform.
 
 **Planned changes:**
-- Add a dedicated groomer selection step with clear selection controls.
-- Add a services list step that updates based on the currently selected groomer, including a clear selected-groomer indicator and a way to change groomers.
-- Implement backend APIs and seed data to (1) list groomers and (2) list services for a given groomer identifier (single Motoko actor).
-- Connect the UI to backend APIs via React Query with loading, error, and retry states for both groomers and services.
-- Apply a consistent, responsive visual theme across steps with a non-blue/non-purple primary color.
+- Add a new `/groomer-onboard` route with a signup form for groomers
+- Collect groomer details including name, contact information, and business information
+- Provide a service listing interface where groomers can add, edit, and remove services with title, description, and price range
+- Apply the existing Chewy blue color scheme and typography consistently across all onboarding UI elements
+- Create backend methods to handle groomer registration and store groomer profiles and services
+- Connect the frontend form to backend using React Query with loading states and success/error feedback
+- Add navigation between the scheduler page and groomer onboarding page
 
-**User-visible outcome:** Users can open the scheduler page, choose a groomer, see that groomer’s services, and switch to a different groomer, with responsive layout and clear loading/error feedback.
+**User-visible outcome:** Groomers can visit a dedicated onboarding page to sign up and list their services, while pet owners can navigate between the scheduler and groomer onboarding flows.

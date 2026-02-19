@@ -65,6 +65,11 @@ export default {
                     'accent-foreground': 'oklch(var(--sidebar-accent-foreground))',
                     border: 'oklch(var(--sidebar-border))',
                     ring: 'oklch(var(--sidebar-ring))'
+                },
+                chewy: {
+                    DEFAULT: 'oklch(var(--chewy) / <alpha-value>)',
+                    foreground: 'oklch(var(--chewy-foreground))',
+                    soft: 'oklch(var(--chewy-soft) / <alpha-value>)'
                 }
             },
             borderRadius: {
@@ -93,3 +98,4 @@ export default {
     },
     plugins: [typography, containerQueries, animate]
 };
+

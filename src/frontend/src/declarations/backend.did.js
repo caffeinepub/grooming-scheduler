@@ -21,15 +21,10 @@ export const Groomer = IDL.Record({
 });
 
 export const idlService = IDL.Service({
-  'addGroomer' : IDL.Func([IDL.Text], [], []),
-  'addServiceToGroomer' : IDL.Func(
-      [IDL.Nat, IDL.Text, IDL.Text, IDL.Tuple(IDL.Nat, IDL.Nat)],
-      [],
-      [],
-    ),
   'getAllGroomers' : IDL.Func([], [IDL.Vec(Groomer)], ['query']),
-  'getGroomer' : IDL.Func([IDL.Nat], [Groomer], ['query']),
-  'getServicesForGroomer' : IDL.Func([IDL.Nat], [IDL.Vec(Service)], ['query']),
+  'getGroomer' : IDL.Func([IDL.Nat], [IDL.Opt(Groomer)], ['query']),
+  'registerGroomer' : IDL.Func([IDL.Text, IDL.Vec(Service)], [IDL.Nat], []),
+  'updateGroomerServices' : IDL.Func([IDL.Nat, IDL.Vec(Service)], [], []),
 });
 
 export const idlInitArgs = [];
@@ -48,19 +43,10 @@ export const idlFactory = ({ IDL }) => {
   });
   
   return IDL.Service({
-    'addGroomer' : IDL.Func([IDL.Text], [], []),
-    'addServiceToGroomer' : IDL.Func(
-        [IDL.Nat, IDL.Text, IDL.Text, IDL.Tuple(IDL.Nat, IDL.Nat)],
-        [],
-        [],
-      ),
     'getAllGroomers' : IDL.Func([], [IDL.Vec(Groomer)], ['query']),
-    'getGroomer' : IDL.Func([IDL.Nat], [Groomer], ['query']),
-    'getServicesForGroomer' : IDL.Func(
-        [IDL.Nat],
-        [IDL.Vec(Service)],
-        ['query'],
-      ),
+    'getGroomer' : IDL.Func([IDL.Nat], [IDL.Opt(Groomer)], ['query']),
+    'registerGroomer' : IDL.Func([IDL.Text, IDL.Vec(Service)], [IDL.Nat], []),
+    'updateGroomerServices' : IDL.Func([IDL.Nat, IDL.Vec(Service)], [], []),
   });
 };
 
